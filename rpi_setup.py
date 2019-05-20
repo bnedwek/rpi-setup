@@ -5,14 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    html = '''
-    <h1>Raspberry Pi setup</h1>
-    <ul>
-        <p><a href='./rarp'>RARP mapping</a></p>
-        <p><a href='./tftp'>TFTP mapping</a></p>
-        <p><a href='./nfs'>NFS shares</a></p>
-    </ul>
-    '''
+    html = render_template('index.html')
     return html
 
 @app.route("/rarp")

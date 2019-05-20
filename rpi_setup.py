@@ -23,7 +23,7 @@ def rarp():
         for line in f: 
             pair = line.split()
             pairs.append(pair)
-    html = render_template('list_pairs.html', title='RARP mappings', pairs=pairs)
+    html = render_template('list_pairs.html', title='RARP mappings', headers=['MAC', 'IP'], pairs=pairs)
     return html
 
 @app.route("/tftp")
@@ -38,7 +38,7 @@ def nfs():
         for line in f:
             pair = line.split()
             pairs.append(pair)
-    html = render_template('list_pairs.html', title='NFS shares', pairs=pairs)
+    html = render_template('list_pairs.html', title='NFS shares', headers=['PATH', 'IP'], pairs=pairs)
     return html
 
 if __name__ == "__main__":

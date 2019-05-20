@@ -6,10 +6,14 @@
 	<body>
 		<h1>{{ title }}</h1>
 		<table>
-		{% for rarp_map in pairs %}
 		<tr>
-			<td>{{ rarp_map[0] }}</td>
-			<td>{{ rarp_map[1] }}</td>
+			<th>{{ headers[0] }}</th>
+			<th>{{ headers[1] }}</th>
+		<tr>
+		{% for p in pairs %}
+		<tr>
+			<td>{{ p[0] }}</td>
+			<td>{{ p[1] }}</td>
 		</tr>
 		{% endfor %}
 		</table>

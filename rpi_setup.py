@@ -1,5 +1,6 @@
 import sys
-from flask import Flask
+import jinja2
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route("/")
@@ -17,15 +18,12 @@ def hello():
 @app.route("/rarp")
 def rarp():
     filename = '/etc/ethers'
+    pairs = []
     with open(filename, 'r') as f:
-        ethers = f.readlines()
-    html = '''
-    <h1>RARPD mappings</h1>
-    <ul>
-    '''
-    for line in ethers:
-        html = html + '<li>' + line + '</li>'
-    html = html + '</ul>'
+        for line in f: 
+            pair = line.split()
+            pairs.append(pair)
+    html = render_template('list_pairs.html', title='RARP mappings', pairs=pairs)
     return html
 
 @app.route("/tftp")
@@ -35,15 +33,12 @@ def tftp():
 @app.route("/nfs")
 def nfs():
     filename = '/etc/exports'
+    pairs = []
     with open(filename, 'r') as f:
-        exports = f.readlines()
-    html = '''
-    <h1>NFS exports</h1>
-    <ul>
-    '''
-    for line in exports:
-        html = html + '<li>' + line + '</li>'
-    html = html + '</ul>'
+        for line in f:
+            pair = line.split()
+            pairs.append(pair)
+    html = render_template('list_pairs.html', title='NFS shares', pairs=pairs)
     return html
 
 if __name__ == "__main__":

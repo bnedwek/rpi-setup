@@ -1,0 +1,14 @@
+[Unit]
+Description=uWSGI instance to serve RPi setup HTML
+After=network.target
+
+[Service]
+User=bnedwek
+Group=www-data
+WorkingDirectory=/home/bnedwek/rpi_setup
+Environment="PATH=/home/bnedwek/rpi_setup/env/bin"
+ExecStart=/home/bnedwek/rpi_setup/env/bin/uwsgi --ini rpi_setup.ini
+
+[Install]
+WantedBy=multi-user.target
+
